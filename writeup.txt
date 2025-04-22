@@ -1,0 +1,20 @@
+### Task 3: Training Considerations
+
+1. **Freezing Entire Network**:
+   - Treats model as a static encoder. Fast, but limits adaptability.
+   - Useful for resource-constrained inference or when paired with traditional ML.
+
+2. **Freezing Only Transformer Backbone**:
+   - Task-specific heads adapt to new data while preserving BERT's general knowledge.
+   - Ideal when labeled data is limited.
+
+3. **Freezing One Task Head**:
+   - Prevents degradation of already learned task during continual learning.
+   - Useful for domain adaptation of only one task.
+
+### Transfer Learning Strategy
+
+- **Model**: Start with `bert-base-uncased` or a domain-specific variant like `biobert`.
+- **Step 1**: Freeze all transformer layers, train task heads.
+- **Step 2**: Gradually unfreeze top 2–4 transformer layers to fine-tune.
+- **Rationale**: Protect general knowledge in lower layers, adapt high-level features to your task.
